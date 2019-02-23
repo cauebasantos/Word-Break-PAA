@@ -9,11 +9,8 @@ string = input()
 memo = [-1 for x in range(len(string)+1)]
 
 def dp(i, f):
-	if i > len(string): # se o índice inicial é maior que o tamanho da string
+	if i > len(string) or f > len(string): # se o índice inicial é maior que o tamanho da string
 		return 0 # não há mais palavras para se formar (acabou o problema)
-	
-	if f > len(string): # se o índice final é maior que o tamanho da string
-		return dp(i+1, i+2) # recomeça a procurar, dessa vez com i = i+1
 
 	if memo[i] != -1: # se já temos uma solução para esse subproblema
 		return memo[i]# retornamos essa solução
@@ -32,10 +29,8 @@ def dp(i, f):
 
 def can_break(lenght):
 	# a string poderá ser quebrada se for do mesmo tamanho que o retorno de dp
-	if lenght == len(string):
-		return 1
+	return 1 if lenght == len(string) else 0
 
-	return 0
 
 print(can_break(dp(0,0)))
 t -= 1
